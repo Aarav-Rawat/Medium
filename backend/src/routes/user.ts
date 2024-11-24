@@ -20,16 +20,17 @@ userRouter.post('signup', async (c) => {
     const user = await prisma.user.create({
         //@ts-ignore
         data: {
+            name: body.name,
             email: body.email,
             password: body.password,
         },
     })
 
 
-    const token = await sign({ id: user.id }, c.env.JWT_SECRET);
+    const jwt = await sign({ id: user.id }, c.env.JWT_SECRET);
 
     return c.json({
-        jwt: token
+        jwt
     })
 })
 
@@ -39,6 +40,7 @@ userRouter.post('signin', async (c) => {
         datasourceUrl: c.env?.DATABASE_URL,
     }).$extends(withAccelerate());
 
+    
     const body = await c.req.json();
 
     const user = await prisma.user.findUnique({
@@ -53,7 +55,7 @@ userRouter.post('signin', async (c) => {
         return c.json({ error: "User not found" });
     }
 
-    const jwt = sign({ id: user.id }, c.env.JWT_SECRET)
+    const jwt = await sign({ id: user.id }, c.env.JWT_SECRET)
 
     return c.json({
         jwt
