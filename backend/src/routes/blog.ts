@@ -36,10 +36,10 @@ blogRouter.use('/*', async (c: Context, next) => {
 })
 
 blogRouter.post('/', async (c) => {
+  try {
   const prisma = new PrismaClient({
     datasourceUrl: c.env?.DATABASE_URL
   }).$extends(withAccelerate());
-  try {
 
     const body = await c.req.json()
     const userId = c.get('userId');
@@ -64,10 +64,10 @@ blogRouter.post('/', async (c) => {
 })
 
 blogRouter.put('/', async (c) => {
+  try {
   const prisma = new PrismaClient({
     datasourceUrl: c.env?.DATABASE_URL
   }).$extends(withAccelerate());
-  try {
 
     const body = await c.req.json();
 
@@ -92,11 +92,11 @@ blogRouter.put('/', async (c) => {
 })
 
 blogRouter.get('/bulk', async (c) => {
-  const prisma = new PrismaClient({
-    datasourceUrl: c.env?.DATABASE_URL
-  }).$extends(withAccelerate());
   try {
-
+  const prisma = new PrismaClient({
+    datasourceUrl: c.env?.DATABASE_URL,
+}).$extends(withAccelerate());
+ 
     const blogs = await prisma.blog.findMany()
 
     if(!blogs){
