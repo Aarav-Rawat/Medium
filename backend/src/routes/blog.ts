@@ -78,7 +78,6 @@ blogRouter.put('/', async (c) => {
       data: {
         title: body.title,
         content: body.content,
-        published: body.published
       }
     })
 
@@ -112,7 +111,6 @@ blogRouter.get('/bulk', async (c) => {
   }
 })
 
-
 blogRouter.get('/:id', async (c) => {
   const prisma = new PrismaClient({
     datasourceUrl: c.env?.DATABASE_URL
@@ -137,4 +135,4 @@ blogRouter.get('/:id', async (c) => {
 
 
 
-
+ 
