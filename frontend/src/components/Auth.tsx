@@ -4,6 +4,7 @@ import { ChangeEvent, useState } from "react";
 import { Link, useNavigate } from "react-router-dom"
 import {BACKEND_URL} from "../config"
 
+
 export const Auth = ({ type }: { type: "signup" | "signin" }) => {  
 
     const [postInputs, setPostInputs] = useState<SignupInput>({
@@ -16,11 +17,9 @@ export const Auth = ({ type }: { type: "signup" | "signin" }) => {
 
    async function sendRequest(){
       try{
-           const response =  await axios.post(`${BACKEND_URL}/api/v1/user/${type === "signup" ? "signup" : "signin"}`,{
-               name: postInputs.name,
-               email: postInputs.email,
-               password: postInputs.password
-           });
+           const response =  await axios.post(`${BACKEND_URL}/api/v1/user/${type === "signup" ? "signup" : "signin"}`,
+               postInputs
+           );
            const jwt = response.data;
            localStorage.setItem("token",jwt);
            navigate("/blog");
@@ -32,6 +31,7 @@ export const Auth = ({ type }: { type: "signup" | "signin" }) => {
 
 
     return <div className="h-screen flex justify-center items-center flex-col">
+        
         <div className="flex justify-center items-center flex-col">
             <h3 className="text-3xl font-extrabold">Create an Account</h3>
             <span className="text-slate-400">{
@@ -88,9 +88,10 @@ interface LabelledInputType {
 
 function LabelledInput({ label, placeholder, onChange, type }: LabelledInputType) {
     return <div>
+       
         <label className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">{label}</label>
 
-        <input onChange={onChange} type={type || "text"} id="first_name" className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder={placeholder} required />
+        <input onChange={onChange} type={type || "text"} id="first_name" className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-80 p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder={placeholder} required />
 
     </div>
 }
