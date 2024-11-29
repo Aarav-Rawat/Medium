@@ -1,38 +1,34 @@
 import { BlogCard } from "@/components/BlogCard"
 import { Navbar } from "@/components/Navbar"
+import { useBlogs } from "@/hooks"
 
-export const Blogs = () =>{
+
+export const Blogs = () => {
+  const { loading, blogs } = useBlogs()
+  if (loading) {
     return <div>
-        <Navbar/>
-        <div className="flex flex-col gap-2">
-
-        <BlogCard
-          id={1}
-         authorName={"aarav"}
-         title={"dick"}
-         content={"heememe ello bhai kaise ho app sab"}
-         publishedDate={
-        "30feb ko 6bje"
-         }
-        />
-        <BlogCard
-          id={2}
-         authorName={"aarav"}
-         title={"dick"}
-         content={"heememe ello bhai kaise ho app sab"}
-         publishedDate={
-        "30feb ko 6bje"
-         }
-        />
-        <BlogCard
-          id={2}
-         authorName={"aarav"}
-         title={"dick"}
-         content={"hello bhai kaise ho app sab"}
-         publishedDate={
-        "30feb ko 6bje"
-         }
-        />
-        </div>
+      fetching data....
     </div>
+  }
+  return <div>
+    <Navbar />
+
+    <div className="flex flex-col gap-2">
+      {
+        blogs.map(blog => (
+          < BlogCard
+            id={blog.id}
+            authorName={blog.author.name}
+            title={blog.title}
+            content={blog.content}
+            publishedDate={
+             "29-11-2024"
+            }
+          />
+        ))
+
+      }
+
+    </div>
+  </div>
 }
