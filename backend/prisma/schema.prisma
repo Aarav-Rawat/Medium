@@ -18,10 +18,10 @@ id String @id @default(uuid())
 email String @unique
 name String
 password String
-post Post[]
+blogs Blog[]
 }
 
-model Post  {
+model Blog  {
 id String @id @default(uuid())
 title String
 content String

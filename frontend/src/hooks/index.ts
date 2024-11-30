@@ -14,21 +14,20 @@ interface BlogsType {
 export const useBlogs = () => {
     const [blogs, setBlogs] = useState<BlogsType[]>([]);
     const [loading, setLoading] = useState(true);
+
     useEffect(() => {
         axios.get(`${BACKEND_URL}/api/v1/blog/bulk`, {
             headers: {
                 Authorization: localStorage.getItem("token")
             }
-        })
-            .then((response => {
+        }).then((response => {
                 setBlogs(response.data.blogs)
                 setLoading(false)
             }))
     }
-
         , []
     )
-
+    
     return {
         loading,
         blogs
