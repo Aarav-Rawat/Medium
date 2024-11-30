@@ -33,3 +33,35 @@ export const useBlogs = () => {
         blogs
     }
 }
+
+interface BlogType {
+    id: string,
+    title: string,
+    content: string,
+    author: {
+        name: string
+    }
+}
+
+export const useBlog = ({id}: {id: string}) => {
+    const [blogs, setBlog] = useState<BlogType>();
+    const [loading, setLoading] = useState(true);
+
+    useEffect(() => {
+        axios.get(`${BACKEND_URL}/api/v1/blog/${id}`, {
+            headers: {
+                Authorization: localStorage.getItem("token")
+            }
+        }).then((response => {
+                setBlog(response.data)
+                setLoading(false)
+            }))
+    }
+        , []
+    )
+    
+    return {
+        loading,
+        blogs
+    }
+}
