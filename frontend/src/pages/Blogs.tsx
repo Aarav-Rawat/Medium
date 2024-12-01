@@ -15,8 +15,9 @@ export const Blogs = () => {
 
     <div className="flex flex-col gap-2">
       {
-        blogs.map(blog => (
+        blogs.map((blog,index) => (
           < BlogCard
+           key={index}
             id={blog.id}
             authorName={blog.author.name}
             title={blog.title}
