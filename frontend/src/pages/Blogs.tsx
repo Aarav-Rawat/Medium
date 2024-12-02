@@ -1,4 +1,5 @@
 import { BlogCard } from "@/components/BlogCard"
+import { BlogSkeleton } from "@/components/BlogSkeleton"
 import { Navbar } from "@/components/Navbar"
 import { useBlogs } from "@/hooks"
 
@@ -7,7 +8,15 @@ export const Blogs = () => {
   const { loading, blogs } = useBlogs()
   if (loading) {
     return <div>
-      fetching data....
+      <Navbar />
+      <div>
+      <BlogSkeleton/>
+      <BlogSkeleton/>
+      <BlogSkeleton/>
+      <BlogSkeleton/>
+      <BlogSkeleton/>
+      <BlogSkeleton/>
+      </div>
     </div>
   }
   return <div>
