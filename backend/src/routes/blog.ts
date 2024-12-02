@@ -15,26 +15,26 @@ export const blogRouter = new Hono<{
   }
 }>();
 
-// blogRouter.use('/*', async (c: Context, next) => {
-//   try {
-//     const token = c.req.header("authorization") || "";
-//     const user = await verify(token, c.env.JWT_SECRET)
-//     if (user) {
-//       c.set("userId", user.id);
-//       await next();
-//     }
-//     else {
-//       c.status(403);
-//       return c.json({ error: "Login first" });
-//     }
-//   }
-//   catch (e) {
-//     console.log(e);
-//     c.status(411);
-//     return c.text('invalid')
-//   }
+blogRouter.use('/*', async (c: Context, next) => {
+  try {
+    const token = c.req.header("authorization") || "";
+    const user = await verify(token, c.env.JWT_SECRET)
+    if (user) {
+      c.set("userId", user.id);
+      await next();
+    }
+    else {
+      c.status(403);
+      return c.json({ error: "Login first" });
+    }
+  }
+  catch (e) {
+    console.log(e);
+    c.status(411);
+    return c.text('invalid')
+  }
 
-// })
+})
 
 blogRouter.post('/', async (c) => {
   try {
@@ -149,7 +149,8 @@ blogRouter.get('/:id', async (c) => {
     const blog = await prisma.blog.findFirst({
       where: {
         id
-      },
+      }
+      ,
       select:{
         title: true,
         content: true,

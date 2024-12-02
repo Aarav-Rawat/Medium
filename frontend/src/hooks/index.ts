@@ -34,7 +34,7 @@ export const useBlogs = () => {
     }
 }
 
-export interface BlogType {
+export interface Blog {
     id: string,
     title: string,
     content: string,
@@ -44,7 +44,7 @@ export interface BlogType {
 }
 
 export const useBlog = ({id}: {id: string}) => {
-    const [blog, setBlog] = useState<BlogType>();
+    const [blog, setBlog] = useState<Blog>();
     const [loading, setLoading] = useState(true);
 
     useEffect(() => {
@@ -53,11 +53,11 @@ export const useBlog = ({id}: {id: string}) => {
                 Authorization: localStorage.getItem("token")
             }
         }).then((response => {
-                setBlog(response.data)
+                setBlog(response.data.blog)
                 setLoading(false)
             }))
     }
-        , []
+        , [id]
     )
     
     return {
