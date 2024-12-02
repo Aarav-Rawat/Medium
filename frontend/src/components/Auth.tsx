@@ -53,7 +53,7 @@ export const Auth = ({ type }: { type: "signup" | "signin" }) => {
             : null
 }
 
-        <LabelledInput label={"Email"} placeholder={"Enter Email..."}
+        <LabelledInput label={"Email"} placeholder={"69@onlyfans.in"}
 
             onChange={(e) => {
                 setPostInputs({
@@ -62,7 +62,7 @@ export const Auth = ({ type }: { type: "signup" | "signin" }) => {
                 })
             }} />
 
-        <LabelledInput label={"password"} placeholder={"Enter password..."}
+        <LabelledInput label={"password"} placeholder={"696969"}
             type={"password"}
             onChange={(e) => {
                 setPostInputs({
