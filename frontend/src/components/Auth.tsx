@@ -43,7 +43,7 @@ export const Auth = ({ type }: { type: "signup" | "signin" }) => {
 {
   type === "signup"?
         <LabelledInput label={"Name"} placeholder={"Enter Name..."}
-               value={"UnKnown"}
+               value={postInputs.name}
             onChange={(e) => {
                 setPostInputs({
                     ...postInputs,
@@ -54,7 +54,7 @@ export const Auth = ({ type }: { type: "signup" | "signin" }) => {
 }
 
         <LabelledInput label={"Email"} placeholder={"Enter Email"}
-            value={"me@onlyfans.in"}
+            value={postInputs.email}
             onChange={(e) => {
                 setPostInputs({
                     ...postInputs,
@@ -64,7 +64,7 @@ export const Auth = ({ type }: { type: "signup" | "signin" }) => {
 
         <LabelledInput label={"Password"} 
         placeholder={"Enter Password"}
-        value={"696969"}
+        value={postInputs.password}
             type={"password"}
         
             onChange={(e) => {
