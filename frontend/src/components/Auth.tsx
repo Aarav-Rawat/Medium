@@ -43,7 +43,7 @@ export const Auth = ({ type }: { type: "signup" | "signin" }) => {
 {
   type === "signup"?
         <LabelledInput label={"Name"} placeholder={"Enter Name..."}
-
+               value={"UnKnown"}
             onChange={(e) => {
                 setPostInputs({
                     ...postInputs,
@@ -53,8 +53,8 @@ export const Auth = ({ type }: { type: "signup" | "signin" }) => {
             : null
 }
 
-        <LabelledInput label={"Email"} placeholder={"me@OF.com"}
-
+        <LabelledInput label={"Email"} placeholder={"Enter Email"}
+            value={"me@onlyfans.in"}
             onChange={(e) => {
                 setPostInputs({
                     ...postInputs,
@@ -62,8 +62,11 @@ export const Auth = ({ type }: { type: "signup" | "signin" }) => {
                 })
             }} />
 
-        <LabelledInput label={"password"} placeholder={"000000"}
+        <LabelledInput label={"Password"} 
+        placeholder={"Enter Password"}
+        value={"696969"}
             type={"password"}
+        
             onChange={(e) => {
                 setPostInputs({
                     ...postInputs,
@@ -82,6 +85,7 @@ export const Auth = ({ type }: { type: "signup" | "signin" }) => {
 interface LabelledInputType {
     label: string;
     placeholder: string;
+    value: string;
     onChange: (e: ChangeEvent<HTMLInputElement>) => void
     type?: string;
 }
