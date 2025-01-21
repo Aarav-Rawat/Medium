@@ -8,9 +8,9 @@ import {BACKEND_URL} from "../config"
 export const Auth = ({ type }: { type: "signup" | "signin" }) => {  
 
     const [postInputs, setPostInputs] = useState<SignupInput>({
-        name: "",
-        email: "",
-        password: ""
+        name: "UnKnown",
+        email: "me@onlyfans.in",
+        password: "696969"
     })
 
     const navigate = useNavigate();
@@ -35,7 +35,7 @@ export const Auth = ({ type }: { type: "signup" | "signin" }) => {
         <div className="flex justify-center items-center flex-col">
             <h3 className="text-3xl font-extrabold">Create an Account</h3>
             <span className="text-slate-400">{
-                type === "signup" ? "Already have an account?" : "Create an account"
+                type === "signup" ? "Already have one?" : "Wanna Create ? "
             } <Link to={type === "signup" ? "/signin" : "/signup"}>{type === "signup" ? "Login" : "Sign up"}
                  </Link></span>
         </div>
