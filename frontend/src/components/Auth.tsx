@@ -53,7 +53,7 @@ export const Auth = ({ type }: { type: "signup" | "signin" }) => {
             : null
 }
 
-        <LabelledInput label={"Email"} placeholder={"me@onlyfans.in"}
+        <LabelledInput label={"Email"} placeholder={"me@OF.com"}
 
             onChange={(e) => {
                 setPostInputs({
